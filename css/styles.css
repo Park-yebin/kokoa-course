@@ -1,0 +1,9 @@
+@import "reset.css";
+@import "variable.css";
+/*Components*/
+@import "components/status-bar.css";
+/*Screens*/
+@import "screens/login.css";
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
