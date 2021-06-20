@@ -1,6 +1,6 @@
 #chat-screen {
   background-color: #abc1d1;
-  height: 1000vh;
+  height: 500vh;
 }
 #chat-screen .alt-header {
   position: fixed;
@@ -12,6 +12,35 @@
 #chat-screen .status-bar {
   z-index: 2; /*alt-header에 background color를 주면 일부 겹쳐서 나오지 않는 상황을 위해서*/
   background-color: #abc1d1;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes fadeInRight {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 .main-chat {
   margin-top: 120px;
@@ -26,13 +55,22 @@
   font-size: 14px;
   border-radius: 25px;
   margin-bottom: 25px;
+  transform: translateY(-10px);
+  animation: fadeIn 1s linear;
 }
 .message-row {
   width: 100%;
   display: flex;
   margin-bottom: 25px;
 }
-
+.message-row:nth-of-type(2) {
+  animation: fadeInLeft 1s linear;
+  animation-delay: 0.5s;
+}
+.message-row:last-of-type {
+  animation: fadeInRight 1s linear;
+  animation-delay: 1s;
+}
 .message-row img {
   width: 50px;
   height: 50px;
@@ -89,6 +127,7 @@
   padding: 5px 25px;
   align-items: center;
   box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
 }
 .reply .reply__column:nth-of-type(1) {
   width: 10%;
@@ -102,6 +141,7 @@
   width: 100%;
   border: var(--main-border);
   border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 .reply button,
 .reply .reply__column:nth-of-type(2) > i {
@@ -132,4 +172,21 @@
 }
 .reply__column button i {
   opacity: 1;
+}
+.reply .fa-smile,
+.reply button,
+.reply .reply__column:nth-of-type(1) {
+  transition: opacity 0.3s ease-in-out;
+}
+.reply:focus-within .fa-smile,
+.reply:focus-within button,
+.reply:focus-within .reply__column:nth-of-type(1) {
+  opacity: 0;
+}
+.reply:focus-within input {
+  width: 92vw;
+  transform: translateX(-13%) translateY(-80px);
+}
+.reply:focus-within {
+  transform: translateY(80px);
 }
